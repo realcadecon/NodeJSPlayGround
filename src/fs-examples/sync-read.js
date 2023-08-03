@@ -31,8 +31,8 @@ const __dirname = path.dirname(__filename);
 // console.log(data_sync);
 // console.log('\n' + data_sync_2);
 
-const contents = fs.readdirSync(__dirname);
-console.log(contents);
+// const contents = fs.readdirSync(__dirname);
+// console.log(contents);
 
-const stats = fs.lstatSync(path.join(__dirname, 'sample.txt'));
-console.log(stats);
+// const stats = fs.lstatSync(path.join(__dirname, 'sample.txt'));
+// console.log(stats);
