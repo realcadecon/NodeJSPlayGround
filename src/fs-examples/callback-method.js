@@ -17,23 +17,36 @@ const __dirname = path.dirname(__filename);
 // const data_sync = fs.readFileSync(__dirname + '/sample.txt', 'utf8');
 // const data_sync_2 = fs.readFileSync(path.join(__dirname, 'my_json_file.json'), 'utf8');
 
-fs.readFile(path.join(__dirname, 'my_json_file.json'), 'utf8', (err, data) => {
-    if(err) console.log(err);
-    else console.log(data);
-});
+// fs.readFile(path.join(__dirname, 'my_json_file.json'), 'utf8', (err, data) => {
+//     if(err) console.log(err);
+//     else console.log(data);
+// });
 
 //async in-order
 
-fs.writeFile(path.join(__dirname, 'my_json_file_2.json'), JSON.stringify({message: "hello world 2"}), (err, data) => {
-    console.log("done writing to file");
-    fs.readFile(path.join(__dirname, 'my_json_file_2.json'), 'utf8', (err, data) => {
-        if(err) console.log(err);
-        else {
-            fs.unlink(path.join(__dirname, 'my_json_file_2.json'), (err) => {});
-        }
-    });
-});
+// fs.writeFile(path.join(__dirname, 'my_json_file_2.json'), JSON.stringify({message: "hello world 2"}), (err, data) => {
+//     console.log("done writing to file");
+//     fs.readFile(path.join(__dirname, 'my_json_file_2.json'), 'utf8', (err, data) => {
+//         if(err) console.log(err);
+//         else {
+//             fs.unlink(path.join(__dirname, 'my_json_file_2.json'), (err) => {});
+//         }
+//     });
+// });
 
 
-//promises - avoid callback hell
+//promises - avoid callback hell (async await methods)
+const fsPromises = fs.promises;
 
+// fsPromises.readFile(path.join(__dirname, 'my_json_file.json'), 'utf8')
+//     .then(result => console.log(result))
+//     .catch(err => console.log(err));
+
+
+const exec = async () => {
+    await fsPromises.writeFile(path.join(__dirname, 'my_json_file.json'), JSON.stringify({message: "editing this file in async await function"}));
+    const data = await fsPromises.readFile(path.join(__dirname, 'my_json_file.json'), 'utf8');
+    console.log(data);
+}
+
+exec();
